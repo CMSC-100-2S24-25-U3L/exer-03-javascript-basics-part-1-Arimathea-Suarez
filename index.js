@@ -48,12 +48,36 @@ function reversePassword(password) {
 }
 
 
+// The function for storing the password
+
+function storePassword(name, password1, password2) {
+
+    let isValid = validatePassword(password1, password2);
+
+    let newPassword;
+
+    if (isValid) {
+        newPassword = reversePassword(password1);
+    } else {
+        newPassword = password1;
+    }
+
+    return {
+        name: name,
+        newPassword: newPassword
+    };
+}
+
 
 
 
 //Example for testing
+console.log(validatePassword("helloworld", "hello"));
+console.log(validatePassword("hello", "hello"));
+console.log(validatePassword("hello1234", "hello1234"));
 console.log(validatePassword("Hello1234", "Hello1234"));
-console.log(reversePassword("Hello1234"));
+console.log(reversePassword("HELLO1234", "HELLO1234"));
+console.log(storePassword("John", "Pass123", "Pass12345"));
 
 
 
