@@ -35,10 +35,26 @@ function validatePassword(password1, password2) {
 
 }
 
+// The function for reversing the password
+
+function reversePassword(password) {
+
+    let reversed = "";
+    for (let i = password.length - 1; i >= 0; i--) {
+        reversed += password[i];
+    }
+
+    return reversed;
+}
+
+
+
 
 
 //Example for testing
-console.log(validatePassword("Hello1", "Hello1"));
+console.log(validatePassword("Hello1234", "Hello1234"));
+console.log(reversePassword("Hello1234"));
+
 
 
 
