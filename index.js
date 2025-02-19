@@ -3,35 +3,24 @@
 // Description: A password validation program using JavaScript
 
 
+
 //The function for validating the password 
 
 function validatePassword(password1, password2) {
 
-    if (password1 === password2) return true; // To check if the given passwords match 
+    if (password1 !== password2) { return false; } // To check if the password is a match 
 
-    if (password1 !== password2) return false; // To check if the given passwords match 
+    if (password1.length < 8) { return false; } // To check if the password is  at least 8 characters
 
-    if (password1.length < 8) return false; // To check if the password has at least 8 characters
+    if (!/[A-Z]/.test(password1)) { return false; } // To check if the password corresponds to the characters from 'A-Z' and is testes using the .test
 
-
-
-    let isUpperCase = false, isLowerCase = false, isANumber = false;
-
-    for (let i = 0; i < password1.length; i++) {
-
-        let char = password1[i];
-        if (char >= 'A' && char <= 'Z') isUpperCase = true;
+    if (!/[a-z]/.test(password1)) { return false; } // To check if the password corresponds to the characters from 'a-z' and is testes using the .test
 
 
-        if (char >= 'a' && char <= 'Z') isLowerCase = true;
+    if (!/[0-9]/.test(password1)) { return false; } // To check if the password corresponds to the characters from '0-9' and is testes using the .test
 
 
-        if (char >= '0' && char <= '9') isANumber = true;
-
-
-    }
-
-    return isUpperCase && isLowerCase && isANumber;
+    return true;
 
 }
 
@@ -52,11 +41,11 @@ function reversePassword(password) {
 
 function storePassword(name, password1, password2) {
 
-    let isValid = validatePassword(password1, password2);
+    let isValid = validatePassword(password1, password2); // To check for the validity of the pasword
 
     let newPassword;
 
-    if (isValid) {
+    if (isValid) { // Condition if the password is valid
         newPassword = reversePassword(password1);
     } else {
         newPassword = password1;
@@ -71,11 +60,12 @@ function storePassword(name, password1, password2) {
 
 
 
-//Example for testing
+// Examples for testing
 console.log(validatePassword("helloworld", "hello"));
 console.log(validatePassword("hello", "hello"));
 console.log(validatePassword("hello1234", "hello1234"));
 console.log(validatePassword("Hello1234", "Hello1234"));
+console.log(validatePassword("HELLO1234", "HELLO1234"));
 console.log(reversePassword("HELLO1234", "HELLO1234"));
 console.log(storePassword("John", "Pass123", "Pass12345"));
 
@@ -92,4 +82,5 @@ console.log(storePassword("John", "Pass123", "Pass12345"));
 
 // References:
 //For the if statement of char >= , https://stackoverflow.com/questions/48027617/could-someone-explain-this-code-for-me-please
+//For the .test https://www.w3schools.com/jsref/jsref_regexp_test.asp
 
